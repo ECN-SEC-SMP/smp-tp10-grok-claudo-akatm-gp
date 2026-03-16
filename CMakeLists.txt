@@ -64,7 +64,10 @@ target_include_directories(mytest.out PRIVATE include)
 # -Wextra : warnings supplémentaires
 # -pthread: nécessaire pour GoogleTest
 # -g      : ajoute les symboles de debug
-target_compile_options(mytest.out PRIVATE -Wall -Wextra -pthread -g)
+target_compile_options(mytest.out PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/W4>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -g>
+)
 
 # Liaison de l'exécutable avec GoogleTest.
 # GTest::gtest_main fournit :
