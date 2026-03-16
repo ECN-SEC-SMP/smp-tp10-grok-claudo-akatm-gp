@@ -1,3 +1,1 @@
-
 int factorielle(int a);
-

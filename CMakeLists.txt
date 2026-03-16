@@ -85,3 +85,11 @@ include(GoogleTest)
 # Chaque test est enregistré individuellement dans CTest.
 # Cela permet d'utiliser la commande "ctest" pour les exécuter.
 gtest_discover_tests(mytest.out)
+
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/docs)
+    doxygen_add_docs(doc include src
+        COMMENT "Documentation générée par Doxygen"
+    )
+endif()
